@@ -10,9 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         
-        <ListView
+        <com.xiaoding.pullrefreshbyviewgroup.SlidingListView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:background="#ffffff"
             android:id="@+id/list_view" />
     </com.xiaoding.pullrefreshbyviewgroup.PullToRefresh>

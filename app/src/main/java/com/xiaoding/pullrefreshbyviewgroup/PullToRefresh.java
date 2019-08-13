@@ -22,6 +22,8 @@ import java.util.Date;
 public class PullToRefresh extends ViewGroup {
     private int yDown;
     private int yMove;
+    private int xDown;
+    private int xMove;
 
     public static final int STATUS_PULL_TO_REFRESH = 0;//下拉状态
     public static final int STATUS_RELEASE_TO_REFRESH = 1;//释放立即刷新状态
@@ -92,7 +94,7 @@ public class PullToRefresh extends ViewGroup {
                 yMove = (int) event.getRawY();
                 //listview还能不能往上滑动
                 boolean a = getChildAt(1).canScrollVertically(-1);
-                if (yMove - yDown > toushSlop * 5 && !a) {
+                if (yMove - yDown > toushSlop * 5 && !a ) {
                     //下拉拦截
                     Log.d("Refreshableview", "ydown:" + yDown + "ymove:" + yMove);
                     lastmove = yMove;
@@ -101,7 +103,7 @@ public class PullToRefresh extends ViewGroup {
                 break;
             case MotionEvent.ACTION_UP:
             default:
-                return true;
+                return false;
         }
         return false;
     }
@@ -137,7 +139,7 @@ public class PullToRefresh extends ViewGroup {
                 break;
         }
         updateHeaderView();
-        return false;
+        return super.onTouchEvent(motionEvent);
     }
 
     private void updateHeaderView() {
